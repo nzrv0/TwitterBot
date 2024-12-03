@@ -4,21 +4,18 @@ from bs4 import BeautifulSoup
 
 class Extract:
     def __init__(self) -> None:
-        pass
+        self.base_url = "https://eyecannndy.com/"
 
-    @property
-    def base_url(self):
-        return "https://eyecannndy.com/"
-
-    def extract_techniques(self):
-        url = self.base_url()
-        if response := self.check_aviablitiy(url):
-            extractor = self.extract_html(response)
-            links = extractor.find_all(
+    def extract_technique_names(self):
+        if response := self._check_availability(self.base_url):
+            extractor = self._extract_html(response)
+            all_techniques = extractor.find_all(
                 "a", attrs=lambda x: x and x[0].startswith("/technique")
             )
+            all_techniques = [link.get_text().lower() for link in all_techniques]
+            return all_techniques
 
-    def check_aviablitiy(self, url):
+    def _check_availability(self, url):
         try:
             response = requests.get(url=url)
         except requests.HTTPError as err:
@@ -27,11 +24,20 @@ class Extract:
             print(f"Succsesufly connected {response}")
             return response
 
-    def check_tecnique(self):
-        techniques = self.base_url() + "technique/"
+    def extract_technique_media(self, technique):
+        assets = "https://asset.eyecannndy.com/"
+        if extractor := self._check_tecnique(technique):
+            extracted = extractor.find_all(
+                "img", attrs=lambda x: x and x[0].startswith(assets)
+            )
+            return extracted
 
-        pass
+    def _check_tecnique(self, technique):
+        technique_url = self.base_url + f"technique/{technique}"
+        if response := self._check_availability(technique_url):
+            extractor = self._extract_html(response)
+            return extractor
 
-    def extract_html(self, html_page):
+    def _extract_html(self, html_page):
         bs4 = BeautifulSoup(html_page, "html.parser")
         return bs4
