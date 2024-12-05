@@ -12,10 +12,10 @@ class Main:
         Downloader(media, name)
 
     def extract(self):
-        names = self.extractor.extract_technique_names()
-        random_name = names[randint(0, len(names) - 1)]
-        media = self.extractor.extract_technique_media(technique=random_name)
-        self.download(media, random_name)
+        names = self.extractor.extract_technique_media()
+        # random_name = names[randint(0, len(names) - 1)]
+        # media = self.extractor.extract_technique_media(technique=random_name)
+        # self.download(media, random_name)
 
 
 test1 = Main().extract()
