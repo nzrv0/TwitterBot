@@ -15,19 +15,17 @@ class Extract:
         self.proxies = {"http": "http://131.0.226.198:9898"}
 
     def extract_technique_names(self):
-        if driver := self._check_availability(self.base_url):
-            try:
-                WebDriverWait(driver, 2).until(
-                    EC.presence_of_element_located((By.CLASS_NAME, "nav-animate-in"))
-                )
-                links = driver.find_elements(
-                    By.XPATH, "//li[@class='nav-animate-in']/a"
-                )
-            except common.NoSuchElementException as err:
-                raise Exception(err)
-            else:
-                techniques = [ll.get_attribute("href") for ll in links]
-                return techniques
+        driver = self._check_availability(self.base_url)
+        try:
+            WebDriverWait(driver, 5).until(
+                EC.presence_of_element_located((By.CLASS_NAME, "nav-animate-in"))
+            )
+            links = driver.find_elements(By.XPATH, "//li[@class='nav-animate-in']/a")
+        except common.NoSuchElementException as err:
+            raise Exception(err)
+        else:
+            techniques = [ll.get_attribute("href") for ll in links]
+            return techniques
 
     def _check_availability(self, url):
         driver = self.get_driver()
@@ -40,27 +38,27 @@ class Extract:
             return driver
 
     def extract_technique_media(self):
-        if driver := self.check_tecnique():
-            try:
-                WebDriverWait(driver, 5).until(
-                    EC.presence_of_element_located((By.CLASS_NAME, "grid-item"))
-                )
-                links = driver.find_elements(
-                    By.XPATH, "//*[contains(@class, 'grid-item')]/img"
-                )
-            except common.NoSuchElementException as err:
-                raise Exception(err)
-            else:
-                media_links = [link.get_attribute("src") for link in links]
-                return media_links
+        driver = self.check_tecnique()
+        try:
+            WebDriverWait(driver, 20).until(
+                EC.presence_of_element_located((By.CLASS_NAME, "grid-item"))
+            )
+            links = driver.find_elements(
+                By.XPATH,
+                "//*[contains(@class, 'grid-item')]/img[contains(@src, 'webp')]",
+            )
+        except common.NoSuchElementException as err:
+            raise Exception(err)
+        else:
+            media_links = [link.get_attribute("src") for link in links]
+            return media_links
 
     def check_tecnique(self):
         techniques = self.extract_technique_names()
         get_random_num = randint(0, len(techniques))
         technique = techniques[get_random_num]
 
-        if driver := self._check_availability(technique):
-            return driver
+        return self._check_availability(technique)
 
     def get_driver(self):
         options = self._setup_driver_options()

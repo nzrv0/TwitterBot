@@ -16,6 +16,7 @@ class Main:
         # random_name = names[randint(0, len(names) - 1)]
         # media = self.extractor.extract_technique_media(technique=random_name)
         # self.download(media, random_name)
+        print(names)
 
 
 test1 = Main().extract()
