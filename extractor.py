@@ -2,17 +2,7 @@ from selenium.webdriver.common.by import By
 from selenium import webdriver, common
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-from random import randint
 import logging
-
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    datefmt="%m/%d/%Y %H:%M:%S %p",
-    filename="extractor.log",
-    filemode="a",
-    encoding="utf-8",
-)
 
 
 class Extract:
@@ -35,7 +25,7 @@ class Extract:
             self.logger.error(f"Element not found {err}")
             raise Exception(err)
         else:
-            for link in links[:2]:
+            for link in links[:1]:
                 technique = link.get_attribute("href").split("/")[-1]
                 self.technique_names[technique] = [] + self.technique_names.get(
                     technique, []

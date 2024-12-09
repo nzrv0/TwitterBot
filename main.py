@@ -5,31 +5,38 @@ from collections import defaultdict
 import logging
 import time
 from datetime import datetime, timedelta
-import asyncio
+import psutil
+import twitter_api
 
-logging.basicConfig()
-schedule_logger = logging.getLogger("schedule")
-schedule_logger.setLevel(level=logging.DEBUG)
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    datefmt="%m/%d/%Y %H:%M:%S %p",
+    filename="app.log",
+    filemode="a",
+    encoding="utf-8",
+)
 
 
 class Main:
     def __init__(self) -> None:
         self.old_data = defaultdict(list)
-        self.extractor = Extract()
-        self.downloader = Downloader
+        self.techniques = {}
+        self.file_name = ""
 
     def download(self, name, media):
-        nn = self.downloader(name, media)
-        nn.save_data()
+        downloader = Downloader(name, media)
+        self.file_name = downloader.save_data()
+        print(self.file_name)
 
     def extract_data(self):
-        techniques = self.extractor.technique_names
         # get random technique name from the original techniques
-        get_ran_technique_name = randint(0, len(techniques.keys()) - 1)
-        technique_name = list(techniques.keys())[get_ran_technique_name]
+        get_ran_technique_name = randint(0, len(self.techniques.keys()) - 1)
+        technique_name = list(self.techniques.keys())[get_ran_technique_name]
 
         # get random media link from the original tehcnique
-        technique_medias = techniques[technique_name]
+        technique_medias = self.techniques[technique_name]
         get_ran_technique_media = randint(0, len(technique_medias) - 1)
         media_link = technique_medias[get_ran_technique_media]
 
@@ -43,30 +50,25 @@ class Main:
             self.old_data[technique_name].append(media_link)
 
     def setup(self):
-        self.extractor.extract()
+        extractor = Extract()
+        extractor.extract()
+        self.techniques = extractor.technique_names
 
 
 main = Main()
 main.setup()
 
 
-async def schedule_event(interval):
-
+def schedule_event(interval):
     while True:
-        await asyncio.sleep(5)
+        print("this works")
+        # next_time = datetime.now() + timedelta(seconds=interval)
+        # current_time = datetime.now()
+        # if current_time >= next_time:
         main.repeat_event()
-
-    # main.repeat_event()
-    # next_time = datetime.now() + timedelta(seconds=interval)
-
-    # while True:
-
-    #     current_time = datetime.now()
-    #     if current_time >= next_time:
-    #         main.repeat_event()
-    #         next_time = current_time + timedelta(seconds=interval)
-
-    #     time.sleep(20)
+        twitter_api.post_media(name=main.file_name)
+        # next_time = current_time + timedelta(seconds=interval)
+        time.sleep(interval)
 
 
-asyncio.run(schedule_event(2))
+schedule_event(80)

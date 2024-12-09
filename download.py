@@ -21,21 +21,17 @@ class Downloader:
             "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36"
         }
         req = Request(url=self.media, method="GET", headers=headers)
-        bytes = b""
-
         try:
-            response = urlopen(req)
+            with urlopen(req) as res:
+                yield res.read()
         except URLError as err:
             raise Exception(err)
-        except HTTPError as err:
-            raise Exception(err)
-        else:
-            with response as rs:
-                bytes += rs.read()
-            return bytes
 
     def save_data(self):
         id = self.media.split("/")[-1].split(".")[0]
-        data = self._get_data()
-        with open(f"static/{self.name}-{id}.webp", "wb") as fs:
-            fs.write(data)
+        # data = self._get_data()
+        file_name = f"static/{self.name}-{id}.webp"
+        with open(f"{file_name}", "wb") as fs:
+            for data in self._get_data():
+                fs.write(data)
+        return file_name
