@@ -1,5 +1,6 @@
 from urllib.request import urlopen, Request
 from urllib.error import HTTPError, URLError
+from PIL import Image
 
 
 class Downloader:
@@ -24,14 +25,22 @@ class Downloader:
         try:
             with urlopen(req) as res:
                 yield res.read()
+
         except URLError as err:
             raise Exception(err)
 
     def save_data(self):
         id = self.media.split("/")[-1].split(".")[0]
-        # data = self._get_data()
-        file_name = f"static/{self.name}-{id}.webp"
-        with open(f"{file_name}", "wb") as fs:
+        file_name = f"static/{self.name}-{id}"
+        with open(f"{file_name}.webp", "wb") as fs:
             for data in self._get_data():
                 fs.write(data)
+
+        self.convert_format(file_name)
+
         return file_name
+
+    def convert_format(self, file_name):
+        im = Image.open(f"{file_name}.webp")
+        im.info.pop("background", None)
+        im.save(f"{file_name}.gif", "gif", save_all=True)

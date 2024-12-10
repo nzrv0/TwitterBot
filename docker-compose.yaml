@@ -1,0 +1,17 @@
+services:
+    app:
+        network_mode: "host"
+        build: .
+        container_name: gifscrapper
+        # command: fastapi dev src/api.py
+        command: /bin/bash
+        ports:
+            - "8080:8000"
+        volumes:
+            - .:/code
+        stdin_open: true # docker run -i
+        tty: true
+        ulimits:
+            nofile:
+                soft: 32768
+                hard: 32768
