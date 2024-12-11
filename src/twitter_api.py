@@ -28,3 +28,5 @@ def post_media(technique, file_name):
     media = api.media_upload(filename=file_name)
     tweet = f"{technique.title()} technique"
     response = client.create_tweet(text=tweet, media_ids=[media.media_id_string])
+    print(response)
+    logging.info("File has uploaded to twitter")
