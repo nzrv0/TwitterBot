@@ -1,7 +1,7 @@
 from urllib.request import urlopen, Request
 from urllib.error import HTTPError, URLError
 from PIL import Image
-import logging
+from custom_logger import logger
 
 
 class Downloader:
@@ -19,10 +19,10 @@ class Downloader:
                 yield res.read()
 
         except URLError as err:
-            logging.error(f"Please provide correct url {err}")
+            logger.error(f"Please provide correct url {err}")
             raise Exception(err)
         except HTTPError as err:
-            logging.error(f"Connection error {err}")
+            logger.error(f"Connection error {err}")
             raise Exception(err)
 
     def save_data(self):
@@ -32,7 +32,7 @@ class Downloader:
         with open(f"{file_name}.webp", "wb") as fs:
             for data in self._get_data():
                 fs.write(data)
-        logging.info(f"File has downloaded: {file_name}")
+        logger.info(f"File has downloaded: {file_name}.webp")
         self._convert_format(file_name)
         return file_name
 
@@ -40,4 +40,6 @@ class Downloader:
         im = Image.open(f"{file_name}.webp")
         im.info.pop("background", None)
         im.save(f"{file_name}.gif", "gif", save_all=True)
-        logging.info(f"File has been converted to gif format from webp")
+        logger.info(
+            f"File has been converted to gif format from webp: {file_name}.gif"
+        )

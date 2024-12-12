@@ -1,6 +1,6 @@
 import tweepy
 import os
-import logging
+from custom_logger import logger
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -27,6 +27,6 @@ def post_media(technique, file_name):
 
     media = api.media_upload(filename=file_name)
     tweet = f"{technique.title()} technique"
-    response = client.create_tweet(text=tweet, media_ids=[media.media_id_string])
-    print(response)
-    logging.info("File has uploaded to twitter")
+    logger.debug(media)
+    response = client.create_tweet(text=tweet, media_ids=[str(media.media_id_string)])
+    logger.info("File has uploaded to twitter")

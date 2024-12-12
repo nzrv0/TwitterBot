@@ -2,21 +2,11 @@ from extractor import Extractor
 from downloader import Downloader
 from random import randint
 from collections import defaultdict
-import logging
+from custom_logger import logger
 import time
 from datetime import datetime, timedelta
 import twitter_api
 import os
-
-logging.basicConfig(
-    level=logging.DEBUG,
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    datefmt="%Y-%m-%d %H:%M:%S",
-    handlers=[
-        logging.FileHandler("logs/scrapper.log", mode="a"),
-        logging.StreamHandler(),
-    ],
-)
 
 
 class Main:
@@ -64,7 +54,7 @@ class Main:
                     technique=self.technique_name, file_name=self.file_name
                 )
                 self._clean_up()
-                logging.info(f"Next twitter post in {interval} hours")
+                logger.info(f"Next twitte post in {interval} hours")
                 next_time = current_time + timedelta(seconds=interval)
 
     def _clean_up(self):
@@ -73,10 +63,16 @@ class Main:
             os.remove(f"{self.file_name}.webp")
 
     def setup(self):
-        extractor = Extractor()
-        extractor.extract()
-        self.techniques = extractor.technique_names
-        self.schedule_event(20)
+        try:
+            logger.info("Extractor has been started")
+            extractor = Extractor()
+            extractor.extract()
+            self.techniques = extractor.technique_names
+            self.schedule_event(20)
+        except RuntimeError as err:
+            logger.error(f"Stopped due to: {err}")
+        except KeyboardInterrupt as err:
+            logger.error(f"User stopped program")
 
 
 Main().setup()

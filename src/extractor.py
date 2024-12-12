@@ -2,11 +2,7 @@ from selenium.webdriver.common.by import By
 from selenium import webdriver, common
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-import logging
-
-
-selenium_logger = logging.getLogger("selenium")
-selenium_logger.setLevel(logging.error)
+from custom_logger import logger
 
 
 class Extractor:
@@ -25,7 +21,7 @@ class Extractor:
                 "//li[@class='nav-animate-in']/a[contains(@href, '/technique')]",
             )
         except common.NoSuchElementException as err:
-            logging.error(f"Element not found {err}")
+            logger.error(f"Element not found {err}")
             raise Exception(err)
         else:
             for link in links[:1]:
@@ -33,7 +29,7 @@ class Extractor:
                 self.technique_names[technique] = [] + self.technique_names.get(
                     technique, []
                 )
-            logging.info(
+            logger.debug(
                 f"Technique names has beend added: {list(self.technique_names.keys())}"
             )
 
@@ -41,12 +37,13 @@ class Extractor:
         driver = self.get_driver()
         try:
             driver.get(url)
-            logging.info(f"Connected to {url}")
+            logger.debug(f"Connected to {url}")
         except common.InvalidArgumentException as err:
-            logging.error(f"Url not found {err}")
+            logger.error(f"Url not found {err}")
             raise SystemExit(err)
+        except common.TimeoutException as err:
+            logger.error(f"Read timout error in {url}")
         else:
-            print(f"{url} page was found ")
             return driver
 
     def extract_technique_media(self, technique_name):
@@ -65,7 +62,7 @@ class Extractor:
                 "//*[contains(@class, 'grid-item')]/img[contains(@class, 'show-it')]",
             )
         except common.NoSuchElementException as err:
-            logging.error(f"Element not found {err}")
+            logger.error(f"Element not found {err}")
             raise Exception(err)
         else:
             for link in links:
@@ -77,7 +74,7 @@ class Extractor:
         try:
             driver = webdriver.Chrome(options=options)
         except common.NoSuchDriverException as err:
-            logging.error(f"Driver not found {err}")
+            logger.error(f"Driver not found {err}")
             raise RuntimeError(err)
         else:
             return driver
@@ -110,6 +107,6 @@ class Extractor:
         for value in self.technique_names.values():
             items_count += len(value)
 
-        logging.info(
+        logger.info(
             f"Everything was worked fine: {len(self.technique_names.keys())} technique names was found and {items_count} media elements has getted."
         )
