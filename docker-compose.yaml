@@ -1,7 +1,11 @@
 services:
     app:
         network_mode: "host"
-        build: .
+        build:
+            context: .
+            shm_size: 2gb
+        shm_size: 2gb
+
         container_name: gifscrapper
         # command: fastapi dev src/api.py
         command: /bin/bash

@@ -7,6 +7,7 @@ import time
 from datetime import datetime, timedelta
 import twitter_api
 import os
+import asyncio
 
 
 class Main:
@@ -41,7 +42,7 @@ class Main:
             self.download(name=self.technique_name, media=media_link)
             self.old_data[self.technique_name].append(media_link)
 
-    def schedule_event(self, interval):
+    async def schedule_event(self, interval):
         next_time = datetime.now() + timedelta(seconds=interval)
         while True:
             current_time = datetime.now()
@@ -50,14 +51,17 @@ class Main:
                 time.sleep(min(pagination, 5))
             else:
                 self._repeat_event()
-                twitter_api.post_media(
+
+                post_media = await twitter_api.post_media(
                     technique=self.technique_name, file_name=self.file_name
                 )
-                self._clean_up()
+                clean_up = await self._clean_up()
+                await asyncio.gather(post_media, clean_up)
                 logger.info(f"Next twitte post in {interval} hours")
                 next_time = current_time + timedelta(seconds=interval)
 
-    def _clean_up(self):
+    async def _clean_up(self):
+        await asyncio.sleep(2)
         if os.path.exists(f"{self.file_name}.gif"):
             os.remove(f"{self.file_name}.gif")
             os.remove(f"{self.file_name}.webp")
@@ -68,7 +72,8 @@ class Main:
             extractor = Extractor()
             extractor.extract()
             self.techniques = extractor.technique_names
-            self.schedule_event(20)
+            # await self.schedule_event(20)
+            asyncio.run(self.schedule_event(20))
         except RuntimeError as err:
             logger.error(f"Stopped due to: {err}")
         except KeyboardInterrupt as err:

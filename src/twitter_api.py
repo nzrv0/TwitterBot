@@ -1,7 +1,9 @@
 import tweepy
+from tweepy.asynchronous import AsyncClient
 import os
 from custom_logger import logger
 from dotenv import load_dotenv
+import asyncio
 
 load_dotenv()
 
@@ -12,12 +14,12 @@ secret = os.getenv("ACCESS_SECRET")
 bearer = os.getenv("BEARER_TOKEN")
 
 
-def post_media(technique, file_name):
+async def post_media(technique, file_name):
     file_name = f"{file_name}.gif"
     auth = tweepy.OAuth1UserHandler(api_key, api_secret, token, secret)
     api = tweepy.API(auth)
 
-    client = tweepy.Client(
+    client = AsyncClient(
         consumer_key=api_key,
         consumer_secret=api_secret,
         bearer_token=bearer,
@@ -27,6 +29,8 @@ def post_media(technique, file_name):
 
     media = api.media_upload(filename=file_name)
     tweet = f"{technique.title()} technique"
-    logger.debug(media)
-    response = client.create_tweet(text=tweet, media_ids=[str(media.media_id_string)])
-    logger.info("File has uploaded to twitter")
+
+    response = await client.create_tweet(
+        text=tweet, media_ids=[str(media.media_id_string)]
+    )
+    logger.info(f"File has uploaded to twitter {response}")
