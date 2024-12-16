@@ -1,9 +1,9 @@
 import tweepy
-from tweepy.asynchronous import AsyncClient
 import os
+
+import tweepy.errors
 from custom_logger import logger
 from dotenv import load_dotenv
-import asyncio
 
 load_dotenv()
 
@@ -19,7 +19,7 @@ async def post_media(technique, file_name):
     auth = tweepy.OAuth1UserHandler(api_key, api_secret, token, secret)
     api = tweepy.API(auth)
 
-    client = AsyncClient(
+    client = tweepy.Client(
         consumer_key=api_key,
         consumer_secret=api_secret,
         bearer_token=bearer,
@@ -30,7 +30,12 @@ async def post_media(technique, file_name):
     media = api.media_upload(filename=file_name)
     tweet = f"{technique.title()} technique"
 
-    response = await client.create_tweet(
-        text=tweet, media_ids=[str(media.media_id_string)]
-    )
-    logger.info(f"File has uploaded to twitter {response}")
+    try:
+        response = client.create_tweet(
+            text=tweet, media_ids=[str(media.media_id_string)]
+        )
+    except tweepy.errors.BadRequest as err:
+        logger.error(f"Cannot post file: {err}")
+        raise RuntimeError(f"Cannot post file: {err}")
+    else:
+        logger.info(f"File has uploaded to twitter {response}")

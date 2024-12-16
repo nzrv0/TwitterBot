@@ -3,6 +3,7 @@ from selenium import webdriver, common
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from custom_logger import logger
+import io
 
 
 class Extractor:
@@ -13,18 +14,18 @@ class Extractor:
     def extract_technique_names(self):
         driver = self._check_availability(self.base_url)
         try:
-            WebDriverWait(driver, 5).until(
-                EC.presence_of_element_located((By.CLASS_NAME, "nav-animate-in"))
-            )
+            # WebDriverWait(driver, 5).until(
+            #     EC.presence_of_element_located((By.CLASS_NAME, "nav-animate-in"))
+            # )
             links = driver.find_elements(
                 By.XPATH,
                 "//li[@class='nav-animate-in']/a[contains(@href, '/technique')]",
             )
-        except common.NoSuchElementException as err:
+        except common.exceptions.NoSuchElementException as err:
             logger.error(f"Element not found {err}")
-            raise Exception(err)
+            pass
         else:
-            for link in links[:1]:
+            for link in links[:5]:
                 technique = link.get_attribute("href").split("/")[-1]
                 self.technique_names[technique] = [] + self.technique_names.get(
                     technique, []
@@ -38,32 +39,36 @@ class Extractor:
         try:
             driver.get(url)
             logger.debug(f"Connected to {url}")
-        except common.InvalidArgumentException as err:
+        except common.exceptions.InvalidArgumentException as err:
             logger.error(f"Url not found {err}")
             raise SystemExit(err)
-        except common.TimeoutException as err:
+        except common.exceptions.TimeoutException as err:
             logger.error(f"Read timout error in {url}")
+            pass
         else:
             return driver
 
     def extract_technique_media(self, technique_name):
         driver = self._check_availability(f"{self.base_url}/technique/{technique_name}")
         try:
-            WebDriverWait(driver, 5, 1).until(
-                EC.presence_of_element_located(
-                    (
-                        By.XPATH,
-                        "//*[contains(@class, 'grid-item')]/img[contains(@class, 'show-it')]",
-                    )
-                )
-            )
+            # WebDriverWait(driver, 5, 1).until(
+            #     EC.presence_of_element_located(
+            #         (
+            #             By.XPATH,
+            #             "//*[contains(@class, 'grid-item')]/img[contains(@class, 'show-it')]",
+            #         )
+            #     )
+            # )
             links = driver.find_elements(
                 By.XPATH,
                 "//*[contains(@class, 'grid-item')]/img[contains(@class, 'show-it')]",
             )
-        except common.NoSuchElementException as err:
+        except common.exceptions.NoSuchElementException as err:
             logger.error(f"Element not found {err}")
-            raise Exception(err)
+            pass
+        except common.exceptions.TimeoutException as err:
+            logger.warning(err)
+            pass
         else:
             for link in links:
                 media_link = link.get_attribute("src")
@@ -73,7 +78,7 @@ class Extractor:
         options = self._setup_driver_options()
         try:
             driver = webdriver.Chrome(options=options)
-        except common.NoSuchDriverException as err:
+        except common.exceptions.NoSuchDriverException as err:
             logger.error(f"Driver not found {err}")
             raise RuntimeError(err)
         else:
@@ -86,7 +91,6 @@ class Extractor:
         options.add_argument("--disable-gpu")
         options.add_argument("--no-sandbox")
         options.add_argument("--window-size=1920,1080")
-        # options.add_argument("--disable-dev-shm-usage")
 
         options.add_argument(
             "user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
@@ -97,7 +101,6 @@ class Extractor:
     def extract(self):
         # get names of technique names
         self.extract_technique_names()
-
         # extranct the media links from the technique names
         for technique_name in self.technique_names.keys():
             self.extract_technique_media(technique_name)
