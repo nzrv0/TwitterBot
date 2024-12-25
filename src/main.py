@@ -7,7 +7,6 @@ import time
 from datetime import datetime, timedelta
 import twitter_api
 import os
-import asyncio
 
 
 class Main:
@@ -47,17 +46,19 @@ class Main:
         while True:
             current_time = datetime.now()
             pagination = (next_time - current_time).total_seconds()
-            if pagination > 0:
-                time.sleep(min(pagination, 5))
-            else:
+            if pagination < 0:
                 self._repeat_event()
 
                 twitter_api.post_media(
                     technique=self.technique_name, file_name=self.file_name
                 )
                 self._clean_up()
+
                 logger.info(f"Next twitte post in {interval} hours")
                 next_time = current_time + timedelta(seconds=interval)
+            else:
+
+                time.sleep(min(pagination, 5))
 
     def _clean_up(self):
         time.sleep(3)

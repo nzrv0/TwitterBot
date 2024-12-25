@@ -25,7 +25,7 @@ class Extractor:
             logger.error(f"Element not found {err}")
             pass
         else:
-            for link in links[:5]:
+            for link in links[:1]:
                 technique = link.get_attribute("href").split("/")[-1]
                 self.technique_names[technique] = [] + self.technique_names.get(
                     technique, []

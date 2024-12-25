@@ -74,3 +74,6 @@ dmypy.json
 *.bak
 *.tmp
 
+
+#extracted images
+data/
