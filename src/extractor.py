@@ -3,7 +3,7 @@ from selenium import webdriver, common
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from custom_logger import logger
-import io
+import json
 
 
 class Extractor:
@@ -51,14 +51,14 @@ class Extractor:
     def extract_technique_media(self, technique_name):
         driver = self._check_availability(f"{self.base_url}/technique/{technique_name}")
         try:
-            # WebDriverWait(driver, 5, 1).until(
-            #     EC.presence_of_element_located(
-            #         (
-            #             By.XPATH,
-            #             "//*[contains(@class, 'grid-item')]/img[contains(@class, 'show-it')]",
-            #         )
-            #     )
-            # )
+            WebDriverWait(driver, 5, 1).until(
+                EC.presence_of_element_located(
+                    (
+                        By.XPATH,
+                        "//*[contains(@class, 'grid-item')]/img[contains(@class, 'show-it')]",
+                    )
+                )
+            )
             links = driver.find_elements(
                 By.XPATH,
                 "//*[contains(@class, 'grid-item')]/img[contains(@class, 'show-it')]",

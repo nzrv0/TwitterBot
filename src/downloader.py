@@ -2,6 +2,7 @@ from urllib.request import urlopen, Request
 from urllib.error import HTTPError, URLError
 from PIL import Image
 from custom_logger import logger
+import os
 
 
 class Downloader:
@@ -37,9 +38,18 @@ class Downloader:
         return file_name
 
     def _convert_format(self, file_name):
+
         im = Image.open(f"{file_name}.webp")
         im.info.pop("background", None)
-        im.save(f"{file_name}.gif", "gif", save_all=True)
-        logger.info(
-            f"File has been converted to gif format from webp: {file_name}.gif"
-        )
+
+        create_file = f"{file_name}.gif"
+        im.save(create_file, "gif", save_all=True)
+        logger.info(f"File has been converted to gif format from webp: {create_file}")
+
+        info = os.stat(create_file).st_size
+        bytes_to_mb = round(info * 10**-6)
+        if bytes_to_mb >= 5:
+            im.save(create_file, "gif", save_all=True, quality=60)
+            logger.warning(
+                f"reduced quality of {create_file} file due large size : {bytes_to_mb}mb size"
+            )

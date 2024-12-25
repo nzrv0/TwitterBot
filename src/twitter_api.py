@@ -1,9 +1,9 @@
 import tweepy
 import os
-import time
 import tweepy.errors
 from custom_logger import logger
 from dotenv import load_dotenv
+import time
 
 load_dotenv()
 
@@ -15,28 +15,33 @@ bearer = os.getenv("BEARER_TOKEN")
 
 
 def post_media(technique, file_name):
+
+    auth = tweepy.OAuth1UserHandler(api_key, api_secret, token, secret)
+    api = tweepy.API(auth)
+
+    client = tweepy.Client(
+        consumer_key=api_key,
+        consumer_secret=api_secret,
+        bearer_token=bearer,
+        access_token=token,
+        access_token_secret=secret,
+    )
     file_name = f"{file_name}.gif"
-    # auth = tweepy.OAuth1UserHandler(api_key, api_secret, token, secret)
-    # api = tweepy.API(auth)
 
-    # client = tweepy.Client(
-    #     consumer_key=api_key,
-    #     consumer_secret=api_secret,
-    #     bearer_token=bearer,
-    #     access_token=token,
-    #     access_token_secret=secret,
-    # )
+    media = api.media_upload(filename=file_name)
+    tweet = f"{technique.title()} technique"
 
-    # media = api.media_upload(filename=file_name)
-    # tweet = f"{technique.title()} technique"
+    try:
+        response = client.create_tweet(
+            text=tweet, media_ids=[str(media.media_id_string)]
+        )
+    except tweepy.errors.BadRequest as err:
+        logger.error(f"Cannot post file: {err}")
+        raise RuntimeError(f"Cannot post file: {err} id-{media.media_id_string}")
+    except tweepy.errors.TooManyRequests:
+        logger.warning("Program has been stop due too many request for 2 hours")
+        time.sleep(60 * 60 + 15 * 60)
+        post_media(technique, file_name)
 
-    # try:
-    #     response = client.create_tweet(
-    #         text=tweet, media_ids=[str(media.media_id_string)]
-    #     )
-    # except tweepy.errors.BadRequest as err:
-    #     logger.error(f"Cannot post file: {err}")
-    #     raise RuntimeError(f"Cannot post file: {err} id-{media.media_id_string}")
-    # else:
-    #     logger.info(f"File has uploaded to twitter {response}")
-    
+    else:
+        logger.info(f"File has uploaded to twitter {response}")
