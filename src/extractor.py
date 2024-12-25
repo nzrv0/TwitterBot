@@ -3,7 +3,6 @@ from selenium import webdriver, common
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from custom_logger import logger
-import json
 
 
 class Extractor:
@@ -14,9 +13,9 @@ class Extractor:
     def extract_technique_names(self):
         driver = self._check_availability(self.base_url)
         try:
-            # WebDriverWait(driver, 5).until(
-            #     EC.presence_of_element_located((By.CLASS_NAME, "nav-animate-in"))
-            # )
+            WebDriverWait(driver, 5).until(
+                EC.presence_of_element_located((By.CLASS_NAME, "nav-animate-in"))
+            )
             links = driver.find_elements(
                 By.XPATH,
                 "//li[@class='nav-animate-in']/a[contains(@href, '/technique')]",
@@ -25,7 +24,7 @@ class Extractor:
             logger.error(f"Element not found {err}")
             pass
         else:
-            for link in links[:1]:
+            for link in links[:5]:
                 technique = link.get_attribute("href").split("/")[-1]
                 self.technique_names[technique] = [] + self.technique_names.get(
                     technique, []
@@ -51,19 +50,12 @@ class Extractor:
     def extract_technique_media(self, technique_name):
         driver = self._check_availability(f"{self.base_url}/technique/{technique_name}")
         try:
-            WebDriverWait(driver, 5, 1).until(
-                EC.presence_of_element_located(
-                    (
-                        By.XPATH,
-                        "//*[contains(@class, 'grid-item')]/img[contains(@class, 'show-it')]",
-                    )
-                )
-            )
+            driver.implicitly_wait(20)
             links = driver.find_elements(
                 By.XPATH,
                 "//*[contains(@class, 'grid-item')]/img[contains(@class, 'show-it')]",
             )
-        except common.exceptions.NoSuchElementException as err:
+        except common.exceptions.NoSuchElementException:
             logger.error(f"Element not found {err}")
             pass
         except common.exceptions.TimeoutException as err:
