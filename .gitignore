@@ -75,5 +75,3 @@ dmypy.json
 *.tmp
 
 
-#extracted images
-data/
