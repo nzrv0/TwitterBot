@@ -70,7 +70,6 @@ coverage.xml
 dmypy.json
 
 # Other
-*.log
 *.bak
 *.tmp
 

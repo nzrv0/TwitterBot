@@ -1,0 +1,263 @@
+Traceback (most recent call last):
+  File "/code/src/main.py", line 1, in <module>
+    from extractor import Extractor
+  File "/code/src/extractor.py", line 5, in <module>
+    from custom_logger import logger
+  File "/code/src/custom_logger.py", line 17, in <module>
+    file_handler = logging.FileHandler("logs/scrapper.log", mode="a")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/logging/__init__.py", line 1231, in __init__
+    StreamHandler.__init__(self, self._open())
+                                 ^^^^^^^^^^^^
+  File "/usr/lib/python3.12/logging/__init__.py", line 1263, in _open
+    return open_func(self.baseFilename, self.mode,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/root/logs/scrapper.log'
+Running the script at Wed Jan  1 15:07:01 UTC 2025
+Traceback (most recent call last):
+  File "/code/src/main.py", line 1, in <module>
+    from extractor import Extractor
+  File "/code/src/extractor.py", line 5, in <module>
+    from custom_logger import logger
+  File "/code/src/custom_logger.py", line 17, in <module>
+    file_handler = logging.FileHandler("logs/scrapper.log", mode="a")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/logging/__init__.py", line 1231, in __init__
+    StreamHandler.__init__(self, self._open())
+                                 ^^^^^^^^^^^^
+  File "/usr/lib/python3.12/logging/__init__.py", line 1263, in _open
+    return open_func(self.baseFilename, self.mode,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/root/logs/scrapper.log'
+Running the script at Wed Jan  1 15:14:01 UTC 2025
+Traceback (most recent call last):
+  File "/code/src/main.py", line 1, in <module>
+    from extractor import Extractor
+  File "/code/src/extractor.py", line 5, in <module>
+    from custom_logger import logger
+  File "/code/src/custom_logger.py", line 17, in <module>
+    file_handler = logging.FileHandler("logs/scrapper.log", mode="a")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/logging/__init__.py", line 1231, in __init__
+    StreamHandler.__init__(self, self._open())
+                                 ^^^^^^^^^^^^
+  File "/usr/lib/python3.12/logging/__init__.py", line 1263, in _open
+    return open_func(self.baseFilename, self.mode,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/root/logs/scrapper.log'
+Running the script at Wed Jan  1 15:15:01 UTC 2025
+Traceback (most recent call last):
+  File "/code/src/main.py", line 1, in <module>
+    from extractor import Extractor
+  File "/code/src/extractor.py", line 5, in <module>
+    from custom_logger import logger
+  File "/code/src/custom_logger.py", line 17, in <module>
+    file_handler = logging.FileHandler("code/logs/scrapper.log", mode="a")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/logging/__init__.py", line 1231, in __init__
+    StreamHandler.__init__(self, self._open())
+                                 ^^^^^^^^^^^^
+  File "/usr/lib/python3.12/logging/__init__.py", line 1263, in _open
+    return open_func(self.baseFilename, self.mode,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/root/code/logs/scrapper.log'
+Running the script at Wed Jan  1 15:21:01 UTC 2025
+Traceback (most recent call last):
+  File "/code/src/main.py", line 1, in <module>
+    from extractor import Extractor
+  File "/code/src/extractor.py", line 5, in <module>
+    from custom_logger import logger
+  File "/code/src/custom_logger.py", line 17, in <module>
+    file_handler = logging.FileHandler("code/logs/scrapper.log", mode="a")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/logging/__init__.py", line 1231, in __init__
+    StreamHandler.__init__(self, self._open())
+                                 ^^^^^^^^^^^^
+  File "/usr/lib/python3.12/logging/__init__.py", line 1263, in _open
+    return open_func(self.baseFilename, self.mode,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/root/code/logs/scrapper.log'
+Running the script at Wed Jan  1 15:22:01 UTC 2025
+Traceback (most recent call last):
+  File "/code/src/main.py", line 1, in <module>
+    from extractor import Extractor
+  File "/code/src/extractor.py", line 5, in <module>
+    from custom_logger import logger
+  File "/code/src/custom_logger.py", line 8, in <module>
+    print(os.chdir())
+          ^^^^^^^^^^
+TypeError: chdir() missing required argument 'path' (pos 1)
+Running the script at Wed Jan  1 15:23:01 UTC 2025
+Traceback (most recent call last):
+  File "/code/src/main.py", line 1, in <module>
+    from extractor import Extractor
+  File "/code/src/extractor.py", line 5, in <module>
+    from custom_logger import logger
+  File "/code/src/custom_logger.py", line 8, in <module>
+    print(os.chdir("code"))
+          ^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'code'
+Running the script at Wed Jan  1 15:24:01 UTC 2025
+/root
+Traceback (most recent call last):
+  File "/code/src/main.py", line 1, in <module>
+    from extractor import Extractor
+  File "/code/src/extractor.py", line 5, in <module>
+    from custom_logger import logger
+  File "/code/src/custom_logger.py", line 20, in <module>
+    file_handler = logging.FileHandler("code/logs/scrapper.log", mode="a")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/logging/__init__.py", line 1231, in __init__
+    StreamHandler.__init__(self, self._open())
+                                 ^^^^^^^^^^^^
+  File "/usr/lib/python3.12/logging/__init__.py", line 1263, in _open
+    return open_func(self.baseFilename, self.mode,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/root/code/logs/scrapper.log'
+Running the script at Wed Jan  1 15:25:01 UTC 2025
+/root
+Traceback (most recent call last):
+  File "/code/src/main.py", line 1, in <module>
+    from extractor import Extractor
+  File "/code/src/extractor.py", line 5, in <module>
+    from custom_logger import logger
+  File "/code/src/custom_logger.py", line 20, in <module>
+    file_handler = logging.FileHandler("code/logs/scrapper.log", mode="a")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/logging/__init__.py", line 1231, in __init__
+    StreamHandler.__init__(self, self._open())
+                                 ^^^^^^^^^^^^
+  File "/usr/lib/python3.12/logging/__init__.py", line 1263, in _open
+    return open_func(self.baseFilename, self.mode,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/root/code/logs/scrapper.log'
+Running the script at Wed Jan  1 15:26:01 UTC 2025
+/root
+Traceback (most recent call last):
+  File "/code/src/main.py", line 1, in <module>
+    from extractor import Extractor
+  File "/code/src/extractor.py", line 5, in <module>
+    from custom_logger import logger
+  File "/code/src/custom_logger.py", line 20, in <module>
+    file_handler = logging.FileHandler("code/logs/scrapper.log", mode="a")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/logging/__init__.py", line 1231, in __init__
+    StreamHandler.__init__(self, self._open())
+                                 ^^^^^^^^^^^^
+  File "/usr/lib/python3.12/logging/__init__.py", line 1263, in _open
+    return open_func(self.baseFilename, self.mode,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/root/code/logs/scrapper.log'
+/bin/sh: 1: root: not found
+Running the script at Wed Jan  1 15:39:01 UTC 2025
+/root
+Traceback (most recent call last):
+  File "/code/src/main.py", line 1, in <module>
+    from extractor import Extractor
+  File "/code/src/extractor.py", line 5, in <module>
+    from custom_logger import logger
+  File "/code/src/custom_logger.py", line 20, in <module>
+    file_handler = logging.FileHandler("code/logs/scrapper.log", mode="a")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/logging/__init__.py", line 1231, in __init__
+    StreamHandler.__init__(self, self._open())
+                                 ^^^^^^^^^^^^
+  File "/usr/lib/python3.12/logging/__init__.py", line 1263, in _open
+    return open_func(self.baseFilename, self.mode,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/root/code/logs/scrapper.log'
+/bin/sh: 1: root: not found
+Running the script at Wed Jan  1 15:43:01 UTC 2025
+/root
+Traceback (most recent call last):
+  File "/code/src/main.py", line 1, in <module>
+    from extractor import Extractor
+  File "/code/src/extractor.py", line 5, in <module>
+    from custom_logger import logger
+  File "/code/src/custom_logger.py", line 20, in <module>
+    file_handler = logging.FileHandler("code/logs/scrapper.log", mode="a")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/logging/__init__.py", line 1231, in __init__
+    StreamHandler.__init__(self, self._open())
+                                 ^^^^^^^^^^^^
+  File "/usr/lib/python3.12/logging/__init__.py", line 1263, in _open
+    return open_func(self.baseFilename, self.mode,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/root/code/logs/scrapper.log'
+/bin/sh: 1: root: not found
+Running the script at Wed Jan  1 15:44:01 UTC 2025
+/root
+Traceback (most recent call last):
+  File "/code/src/main.py", line 1, in <module>
+    from extractor import Extractor
+  File "/code/src/extractor.py", line 5, in <module>
+    from custom_logger import logger
+  File "/code/src/custom_logger.py", line 20, in <module>
+    file_handler = logging.FileHandler("code/logs/scrapper.log", mode="a")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/logging/__init__.py", line 1231, in __init__
+    StreamHandler.__init__(self, self._open())
+                                 ^^^^^^^^^^^^
+  File "/usr/lib/python3.12/logging/__init__.py", line 1263, in _open
+    return open_func(self.baseFilename, self.mode,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/root/code/logs/scrapper.log'
+/bin/sh: 1: root: not found
+Running the script at Wed Jan  1 15:46:01 UTC 2025
+/root
+Traceback (most recent call last):
+  File "/code/src/main.py", line 1, in <module>
+    from extractor import Extractor
+  File "/code/src/extractor.py", line 5, in <module>
+    from custom_logger import logger
+  File "/code/src/custom_logger.py", line 20, in <module>
+    file_handler = logging.FileHandler("code/logs/scrapper.log", mode="a")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/logging/__init__.py", line 1231, in __init__
+    StreamHandler.__init__(self, self._open())
+                                 ^^^^^^^^^^^^
+  File "/usr/lib/python3.12/logging/__init__.py", line 1263, in _open
+    return open_func(self.baseFilename, self.mode,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/root/code/logs/scrapper.log'
+/bin/sh: 1: root: not found
+Running the script at Wed Jan  1 15:47:01 UTC 2025
+/root
+Traceback (most recent call last):
+  File "/code/src/main.py", line 1, in <module>
+    from extractor import Extractor
+  File "/code/src/extractor.py", line 5, in <module>
+    from custom_logger import logger
+  File "/code/src/custom_logger.py", line 20, in <module>
+    file_handler = logging.FileHandler("code/logs/scrapper.log", mode="a")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/logging/__init__.py", line 1231, in __init__
+    StreamHandler.__init__(self, self._open())
+                                 ^^^^^^^^^^^^
+  File "/usr/lib/python3.12/logging/__init__.py", line 1263, in _open
+    return open_func(self.baseFilename, self.mode,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/root/code/logs/scrapper.log'
+/bin/sh: 1: root: not found
+Running the script at Wed Jan  1 15:49:01 UTC 2025
+None
+Traceback (most recent call last):
+  File "/code/src/main.py", line 1, in <module>
+    from extractor import Extractor
+  File "/code/src/extractor.py", line 5, in <module>
+    from custom_logger import logger
+  File "/code/src/custom_logger.py", line 20, in <module>
+    file_handler = logging.FileHandler("code/logs/scrapper.log", mode="a")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/logging/__init__.py", line 1231, in __init__
+    StreamHandler.__init__(self, self._open())
+                                 ^^^^^^^^^^^^
+  File "/usr/lib/python3.12/logging/__init__.py", line 1263, in _open
+    return open_func(self.baseFilename, self.mode,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/code/code/logs/scrapper.log'
+/bin/sh: 1: root: not found
+Running the script at Wed Jan  1 15:50:01 UTC 2025
+2025-01-01 15:50:01 - main - INFO - Extractor has been started
+2025-01-01 15:50:12 - main - DEBUG - Connected to https://eyecannndy.com
+2025-01-01 15:50:13 - main - DEBUG - Technique names has beend added: ['aerial', 'trip', 'traditional', 'anthropomorphism', 'arc-movement']
