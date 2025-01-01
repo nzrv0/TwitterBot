@@ -25,6 +25,4 @@ RUN sudo chmod +x ./src/*.py
 
 RUN crontab /etc/cron.d/mycron
 
-ENTRYPOINT sudo cron -f
-
-CMD [ "flask", "run" ]
+ENTRYPOINT sudo cron; cd src/ && gunicorn -w 4 -b 0.0.0.0 'app:app'
