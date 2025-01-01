@@ -4,7 +4,6 @@ from random import randint
 from collections import defaultdict
 from custom_logger import logger
 import time
-from datetime import datetime, timedelta
 import twitter_api
 import os
 import json
@@ -67,24 +66,6 @@ class Main:
                 self.download(name=self.technique_name, media=media_link)
                 self.old_data[self.technique_name].append(media_link)
                 self.save_old_to_json()
-
-    # def schedule_event(self, interval):
-    #     next_time = datetime.now() + timedelta(seconds=interval)
-    #     while True:
-    #         current_time = datetime.now()
-    #         pagination = (next_time - current_time).total_seconds()
-    #         if pagination < 0:
-    #             self._repeat_event()
-
-    #             twitter_api.post_media(
-    #                 technique=self.technique_name, file_name=self.file_name
-    #             )
-    #             self._clean_up()
-    #             logger.info(f"Next twitte post in {interval} hours")
-    #             next_time = current_time + timedelta(seconds=interval)
-    #         else:
-
-    #             time.sleep(min(pagination, 5))
 
     def schedule_event(self):
         self._repeat_event()
