@@ -1,8 +1,11 @@
 import logging
+import os
 
 logging.basicConfig(
     level=logging.CRITICAL,
 )
+
+print(os.chdir("/code"))
 
 logger = logging.getLogger("main")
 
