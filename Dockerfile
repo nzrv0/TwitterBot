@@ -18,8 +18,8 @@ COPY ./requirements.txt ./
 
 RUN sudo pip install --no-cache-dir -r requirements.txt --break-system-packages
 
-COPY ./src /code/src
-COPY ./logs /code/logs
+COPY /src /code/src
+COPY /logs /code/logs
 
 RUN sudo chmod +x ./src/*.py
 
