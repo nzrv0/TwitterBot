@@ -261,3 +261,9 @@ Running the script at Wed Jan  1 15:50:01 UTC 2025
 2025-01-01 15:50:01 - main - INFO - Extractor has been started
 2025-01-01 15:50:12 - main - DEBUG - Connected to https://eyecannndy.com
 2025-01-01 15:50:13 - main - DEBUG - Technique names has beend added: ['aerial', 'trip', 'traditional', 'anthropomorphism', 'arc-movement']
+/bin/sh: 1: root: not found
+Running the script at Wed Jan  1 16:44:01 UTC 2025
+2025-01-01 16:44:01 - main - INFO - Extractor has been started
+2025-01-01 16:44:10 - main - DEBUG - Connected to https://eyecannndy.com
+2025-01-01 16:44:10 - main - DEBUG - Technique names has beend added: ['aerial', 'trip', 'traditional', 'anthropomorphism', 'arc-movement']
+2025-01-01 16:44:33 - main - DEBUG - Connected to https://eyecannndy.com/technique/aerial

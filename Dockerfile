@@ -26,3 +26,5 @@ RUN sudo chmod +x ./src/*.py
 RUN crontab /etc/cron.d/mycron
 
 ENTRYPOINT sudo cron -f
+
+CMD [ "flask", "run" ]

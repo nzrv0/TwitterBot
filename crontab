@@ -1,4 +1,4 @@
-# SHELL=/bin/sh
+SHELL=/bin/sh
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 * * * * *   root    /usr/bin/python3 /code/src/main.py >> /code/logs/cron.log 2>&1
 * * * * *   root    bash /code/scripts/cron-job.sh
