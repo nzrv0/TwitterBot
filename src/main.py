@@ -54,31 +54,42 @@ class Main:
             logger.debug("Old uploded data has been inserted to json file")
 
     def _repeat_event(self):
-        media_link = self.extract_data()
+        try:
+            with open("old_uploads.json") as fs:
+                self.old_data = json.load(fs)
+        except Exception as err:
+            raise Exception(err)
+        else:
+            media_link = self.extract_data()
 
-        # add to old data to check later for not getting same data twice
-        if media_link not in self.old_data[self.technique_name]:
-            self.download(name=self.technique_name, media=media_link)
-            self.old_data[self.technique_name].append(media_link)
-            self.save_old_to_json()
+            # add to old data to check later for not getting same data twice
+            if media_link not in self.old_data[self.technique_name]:
+                self.download(name=self.technique_name, media=media_link)
+                self.old_data[self.technique_name].append(media_link)
+                self.save_old_to_json()
 
-    def schedule_event(self, interval):
-        next_time = datetime.now() + timedelta(seconds=interval)
-        while True:
-            current_time = datetime.now()
-            pagination = (next_time - current_time).total_seconds()
-            if pagination < 0:
-                self._repeat_event()
+    # def schedule_event(self, interval):
+    #     next_time = datetime.now() + timedelta(seconds=interval)
+    #     while True:
+    #         current_time = datetime.now()
+    #         pagination = (next_time - current_time).total_seconds()
+    #         if pagination < 0:
+    #             self._repeat_event()
 
-                twitter_api.post_media(
-                    technique=self.technique_name, file_name=self.file_name
-                )
-                self._clean_up()
-                logger.info(f"Next twitte post in {interval} hours")
-                next_time = current_time + timedelta(seconds=interval)
-            else:
+    #             twitter_api.post_media(
+    #                 technique=self.technique_name, file_name=self.file_name
+    #             )
+    #             self._clean_up()
+    #             logger.info(f"Next twitte post in {interval} hours")
+    #             next_time = current_time + timedelta(seconds=interval)
+    #         else:
 
-                time.sleep(min(pagination, 5))
+    #             time.sleep(min(pagination, 5))
+
+    def schedule_event(self):
+        self._repeat_event()
+        twitter_api.post_media(technique=self.technique_name, file_name=self.file_name)
+        self._clean_up()
 
     def _clean_up(self):
         time.sleep(3)
@@ -105,18 +116,20 @@ class Main:
                 self.techniques = extractor.technique_names
                 self.save_json()
             else:
-                with open(self.json_file_name, "r") as fs:
+                with open(self.json_file_name) as fs:
                     self.techniques = json.load(fs)
 
-            # run this funciton for every 2 hours
-            self.schedule_event(20)
         except RuntimeError as err:
             logger.error(f"Stopped due to: {err}")
 
         except Exception as err:
             logger.error(f"Program stopped running {err}")
+
         except:
             self._clean_all()
+
+        else:
+            self.schedule_event()
 
 
 Main().setup()

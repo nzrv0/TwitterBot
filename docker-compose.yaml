@@ -7,13 +7,12 @@ services:
         shm_size: 2gb
 
         container_name: gifscrapper
-        # command: fastapi dev src/api.py
         command: /bin/bash
         ports:
             - "8080:8000"
         volumes:
             - .:/code
-        stdin_open: true # docker run -i
+        stdin_open: true
         tty: true
         ulimits:
             nofile:
