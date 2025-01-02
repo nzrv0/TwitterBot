@@ -1,7 +1,6 @@
 from extractor import Extractor
 from downloader import Downloader
 from random import randint
-from collections import defaultdict
 from custom_logger import logger
 import time
 import twitter_api
@@ -11,7 +10,6 @@ import json
 
 class Main:
     def __init__(self) -> None:
-        self.old_data = defaultdict(list)
         self.techniques = {}
         self.file_name = ""
         self.technique_name = ""
@@ -43,30 +41,8 @@ class Main:
         else:
             logger.debug("Data converted to json file")
 
-    def save_old_to_json(self):
-        try:
-            with open("old_uploads.json", "w") as fs:
-                json.dump(self.old_data, fs)
-        except Exception as err:
-            raise Exception(err)
-        else:
-            logger.debug("Old uploded data has been inserted to json file")
-
     def _repeat_event(self):
-
         media_link = self.extract_data()
-
-        # add to old data to check later for not getting same data twice
-
-        # if (
-        #     len(self.old_data) == 0
-        #     or media_link not in self.old_data[self.technique_name]
-        # ):
-        #     self.download(name=self.technique_name, media=media_link)
-        #     self.old_data[self.technique_name].append(media_link)
-        #     self.save_old_to_json()
-        #     self.save_json()
-
         self.download(name=self.technique_name, media=media_link)
         self.techniques[self.technique_name].remove(media_link)
         self.save_json()
