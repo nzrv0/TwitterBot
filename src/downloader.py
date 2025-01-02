@@ -48,8 +48,8 @@ class Downloader:
 
         info = os.stat(create_file).st_size
         bytes_to_mb = round(info * 10**-6)
-        if bytes_to_mb >= 5:
-            im.save(create_file, "gif", save_all=True, quality=60)
+        if bytes_to_mb >= 15:
+            im.save(create_file, "gif", save_all=True, quality=50)
             logger.warning(
                 f"reduced quality of {create_file} file due large size : {bytes_to_mb}mb size"
             )

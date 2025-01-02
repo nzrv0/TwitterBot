@@ -53,19 +53,23 @@ class Main:
             logger.debug("Old uploded data has been inserted to json file")
 
     def _repeat_event(self):
-        try:
-            with open("old_uploads.json") as fs:
-                self.old_data = json.load(fs)
-        except Exception as err:
-            raise Exception(err)
-        else:
-            media_link = self.extract_data()
 
-            # add to old data to check later for not getting same data twice
-            if media_link not in self.old_data[self.technique_name]:
-                self.download(name=self.technique_name, media=media_link)
-                self.old_data[self.technique_name].append(media_link)
-                self.save_old_to_json()
+        media_link = self.extract_data()
+
+        # add to old data to check later for not getting same data twice
+
+        # if (
+        #     len(self.old_data) == 0
+        #     or media_link not in self.old_data[self.technique_name]
+        # ):
+        #     self.download(name=self.technique_name, media=media_link)
+        #     self.old_data[self.technique_name].append(media_link)
+        #     self.save_old_to_json()
+        #     self.save_json()
+
+        self.download(name=self.technique_name, media=media_link)
+        self.techniques[self.technique_name].remove(media_link)
+        self.save_json()
 
     def schedule_event(self):
         self._repeat_event()

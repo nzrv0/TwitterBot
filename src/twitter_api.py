@@ -28,7 +28,9 @@ def post_media(technique, file_name):
     )
     file_name = f"{file_name}.gif"
 
-    media = api.media_upload(filename=file_name)
+    media = api.media_upload(
+        filename=file_name, chunked=True, media_category="tweet_gif"
+    )
     tweet = f"{technique.title()} technique"
 
     try:
@@ -37,11 +39,12 @@ def post_media(technique, file_name):
         )
     except tweepy.errors.BadRequest as err:
         logger.error(f"Cannot post file: {err}")
-        raise RuntimeError(f"Cannot post file: {err} id-{media.media_id_string}")
+        pass
     except tweepy.errors.TooManyRequests:
         logger.warning("Program has been stop due too many request for 2 hours")
-        time.sleep(60 * 60 + 15 * 60)
-        post_media(technique, file_name)
+        # time.sleep(60 * 60 + 15 * 60)
+        # post_media(technique, file_name)
+        pass
 
     else:
         logger.info(f"File has uploaded to twitter {response}")

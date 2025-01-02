@@ -1,15 +1,49 @@
-2025-01-01 14:49:00 - main - INFO - Extractor has been started
-2025-01-01 14:49:44 - main - INFO - Extractor has been started
-2025-01-01 15:50:01 - main - INFO - Extractor has been started
-2025-01-01 15:50:12 - main - DEBUG - Connected to https://eyecannndy.com
-2025-01-01 15:50:13 - main - DEBUG - Technique names has beend added: ['aerial', 'trip', 'traditional', 'anthropomorphism', 'arc-movement']
-2025-01-01 16:44:01 - main - INFO - Extractor has been started
-2025-01-01 16:44:10 - main - DEBUG - Connected to https://eyecannndy.com
-2025-01-01 16:44:10 - main - DEBUG - Technique names has beend added: ['aerial', 'trip', 'traditional', 'anthropomorphism', 'arc-movement']
-2025-01-01 16:44:33 - main - DEBUG - Connected to https://eyecannndy.com/technique/aerial
-2025-01-01 17:10:01 - main - INFO - Extractor has been started
-2025-01-01 17:10:09 - main - DEBUG - Connected to https://eyecannndy.com
-2025-01-01 17:10:09 - main - DEBUG - Technique names has beend added: ['aerial', 'trip', 'traditional', 'anthropomorphism', 'arc-movement']
-2025-01-01 17:46:01 - main - INFO - Extractor has been started
-2025-01-01 17:46:10 - main - DEBUG - Connected to https://eyecannndy.com
-2025-01-01 17:46:10 - main - DEBUG - Technique names has beend added: ['aerial', 'trip', 'traditional', 'anthropomorphism', 'arc-movement']
+2025-01-02 10:22:03 - main - INFO - File has downloaded: data/aerial-261709329389.webp
+2025-01-02 10:22:05 - main - INFO - File has been converted to gif format from webp: data/aerial-261709329389.gif
+2025-01-02 10:22:05 - main - DEBUG - Old uploded data has been inserted to json file
+2025-01-02 10:22:10 - main - INFO - File has uploaded to twitter Response(data={'edit_history_tweet_ids': ['1874763104157893072'], 'id': '1874763104157893072', 'text': 'Aerial technique https://t.co/Ipc9SefPix'}, includes={}, errors=[], meta={})
+2025-01-02 10:22:13 - main - DEBUG - File data/aerial-261709329389.gif and data/aerial-261709329389.webp has been deleted
+2025-01-02 10:24:03 - main - INFO - File has downloaded: data/aerial-261708345479.webp
+2025-01-02 10:24:06 - main - INFO - File has been converted to gif format from webp: data/aerial-261708345479.gif
+2025-01-02 10:24:09 - main - WARNING - reduced quality of data/aerial-261708345479.gif file due large size : 5mb size
+2025-01-02 10:24:09 - main - DEBUG - Old uploded data has been inserted to json file
+2025-01-02 10:28:03 - main - INFO - File has downloaded: data/aerial-261720164595.webp
+2025-01-02 10:28:06 - main - INFO - File has been converted to gif format from webp: data/aerial-261720164595.gif
+2025-01-02 10:28:09 - main - WARNING - reduced quality of data/aerial-261720164595.gif file due large size : 7mb size
+2025-01-02 10:28:09 - main - DEBUG - Old uploded data has been inserted to json file
+2025-01-02 10:28:20 - main - INFO - File has uploaded to twitter Response(data={'id': '1874764655983268304', 'text': 'Aerial technique https://t.co/TJXMeilm2C', 'edit_history_tweet_ids': ['1874764655983268304']}, includes={}, errors=[], meta={})
+2025-01-02 10:28:23 - main - DEBUG - File data/aerial-261720164595.gif and data/aerial-261720164595.webp has been deleted
+2025-01-02 10:30:03 - main - INFO - File has downloaded: data/aerial-261704368615.webp
+2025-01-02 10:30:06 - main - INFO - File has been converted to gif format from webp: data/aerial-261704368615.gif
+2025-01-02 10:30:09 - main - WARNING - reduced quality of data/aerial-261704368615.gif file due large size : 6mb size
+2025-01-02 10:30:09 - main - DEBUG - Old uploded data has been inserted to json file
+2025-01-02 10:30:19 - main - INFO - File has uploaded to twitter Response(data={'text': 'Aerial technique https://t.co/pyRZvbFlRz', 'id': '1874765154363011412', 'edit_history_tweet_ids': ['1874765154363011412']}, includes={}, errors=[], meta={})
+2025-01-02 10:30:22 - main - DEBUG - File data/aerial-261704368615.gif and data/aerial-261704368615.webp has been deleted
+2025-01-02 10:46:03 - main - INFO - File has downloaded: data/aerial-261720164595.webp
+2025-01-02 10:46:06 - main - INFO - File has been converted to gif format from webp: data/aerial-261720164595.gif
+2025-01-02 10:46:06 - main - DEBUG - Data converted to json file
+2025-01-02 10:46:18 - main - INFO - File has uploaded to twitter Response(data={'edit_history_tweet_ids': ['1874769175685554625'], 'text': 'Aerial technique https://t.co/WEZtOpaeVD', 'id': '1874769175685554625'}, includes={}, errors=[], meta={})
+2025-01-02 10:46:21 - main - DEBUG - File data/aerial-261720164595.gif and data/aerial-261720164595.webp has been deleted
+2025-01-02 10:48:03 - main - INFO - File has downloaded: data/aerial-261708403204.webp
+2025-01-02 10:48:05 - main - INFO - File has been converted to gif format from webp: data/aerial-261708403204.gif
+2025-01-02 10:48:05 - main - DEBUG - Data converted to json file
+2025-01-02 10:48:16 - main - INFO - File has uploaded to twitter Response(data={'text': 'Aerial technique https://t.co/fXcWkvPgIJ', 'id': '1874769674488987711', 'edit_history_tweet_ids': ['1874769674488987711']}, includes={}, errors=[], meta={})
+2025-01-02 10:48:20 - main - DEBUG - File data/aerial-261708403204.gif and data/aerial-261708403204.webp has been deleted
+2025-01-02 10:50:03 - main - INFO - File has downloaded: data/aerial-261707626229.webp
+2025-01-02 10:50:06 - main - INFO - File has been converted to gif format from webp: data/aerial-261707626229.gif
+2025-01-02 10:50:06 - main - DEBUG - Data converted to json file
+2025-01-02 10:50:14 - main - INFO - File has uploaded to twitter Response(data={'text': 'Aerial technique https://t.co/ea7wjfYqrm', 'id': '1874770167885897750', 'edit_history_tweet_ids': ['1874770167885897750']}, includes={}, errors=[], meta={})
+2025-01-02 10:50:17 - main - DEBUG - File data/aerial-261707626229.gif and data/aerial-261707626229.webp has been deleted
+2025-01-02 10:52:04 - main - INFO - File has downloaded: data/aerial-261704368615.webp
+2025-01-02 10:52:07 - main - INFO - File has been converted to gif format from webp: data/aerial-261704368615.gif
+2025-01-02 10:52:07 - main - DEBUG - Data converted to json file
+2025-01-02 10:52:16 - main - INFO - File has uploaded to twitter Response(data={'text': 'Aerial technique https://t.co/xUy3KzAU3K', 'edit_history_tweet_ids': ['1874770681000305015'], 'id': '1874770681000305015'}, includes={}, errors=[], meta={})
+2025-01-02 10:52:19 - main - DEBUG - File data/aerial-261704368615.gif and data/aerial-261704368615.webp has been deleted
+2025-01-02 10:54:04 - main - INFO - File has downloaded: data/aerial-261704256696.webp
+2025-01-02 10:54:06 - main - INFO - File has been converted to gif format from webp: data/aerial-261704256696.gif
+2025-01-02 10:54:06 - main - DEBUG - Data converted to json file
+2025-01-02 10:54:17 - main - WARNING - Program has been stop due too many request for 2 hours
+2025-01-02 10:56:04 - main - INFO - File has downloaded: data/aerial-261708345479.webp
+2025-01-02 10:56:07 - main - INFO - File has been converted to gif format from webp: data/aerial-261708345479.gif
+2025-01-02 10:56:07 - main - DEBUG - Data converted to json file
+2025-01-02 10:56:16 - main - WARNING - Program has been stop due too many request for 2 hours
