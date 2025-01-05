@@ -8,7 +8,7 @@ app = Flask(__name__)
 @app.route("/")
 def hello():
     resoult = []
-    with open("logs/scrapper.log", "r") as fs:
+    with open("logs/cron.log", "r") as fs:
         for i in fs:
             resoult.append(i)
     return resoult
